@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="user" class="com.demo01.entity.User">
+        <property name="id" value="42"></property>
+    </bean>
+
+    <bean id="user2" class="com.demo01.entity.User">
+        <constructor-arg index="0" value="12"></constructor-arg>
+        <constructor-arg index="1" value="&amp;xiaoming&lt;&gt;"></constructor-arg>
+    </bean>
+
+    <bean id="user3" class="com.demo01.entity.User">
+        <constructor-arg index="0" value="12"></constructor-arg>
+        <constructor-arg index="1" >
+            <value><![CDATA[&<123456>]]></value>
+        </constructor-arg>
+    </bean>
+
+    <bean id="user4" class="com.demo01.entity.User">
+        <property name="id" value="42"></property>
+        <property name="ls_alies" >
+            <list>
+                <value>wukong</value>
+                <value>houzi</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="userFactory" class="com.demo01.entity.UserFactory"></bean>
+    <bean id="user5" class="com.demo01.entity.User" factory-bean="userFactory" factory-method="getInstance">
+    </bean>
+
+    <bean id="user6" class="com.demo01.entity.UserFactory2" >
+    </bean>
+    <!--bean class="com.demo01.UserProcessor">
+    </bean-->
+    <bean id="userDao" class="com.demo01.dao.UserDaoImpl" />
+
+    <bean id="emp" class="com.demo01.entity.Emp" autowire="byType"></bean>
+    <bean class="com.demo01.entity.Dept">
+        <property name="name" value="abc"></property>
+    </bean>
+</beans>
